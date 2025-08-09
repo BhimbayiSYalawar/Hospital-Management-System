@@ -1,131 +1,79 @@
-![App picture](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/main_picture.jpg)
+Front Desk System at a Clinic
+Overview
+The Front Desk System is a simple web-based application designed to help clinic staff manage patient queues and doctor appointments efficiently. It allows front desk personnel to:
 
-# Description :point_left:
-It's a web application for managing hospitals rooms and determining the patient's priority for isolation. The app provides a centralised hub for managing the patients and planning their distribution across hospital’s rooms. 
+Assign queue numbers to walk-in patients.
 
-It allows nurses to keep track of the patients and their diseases in real time and to have an overview over the patients and rooms, and better manage the rooms assignment across patients.
+Book, reschedule, or cancel patient appointments.
 
-# Live demo :rocket:
-https://nhs-app.herokuapp.com/
-* username: admin
-* password: admin
+Track patient progress and appointment status with doctors.
 
-# Youtube video
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=Q9wTakyRWi4
-" target="_blank"><img src="http://img.youtube.com/vi/Q9wTakyRWi4/0.jpg" 
-alt="Youtube video" width="240" height="180" border="10" /></a>
+Technology Stack
+Backend
 
-# Prerequisites
-- [x] Node.js 6.9.1 or later - install from https://nodejs.org/
+NestJS – Scalable server-side application framework.
 
-# Installing - easy :electric_plug:
-1.	Download the repository
-```
-git clone https://github.com/margiki/NHS-nodejs-webapp
-```
-2.	Open the Terminal (Linux & MacOS) or PowerShell (Windows) and change directory to the project folder.
-3.	Type ‘npm install’ in the Terminal (PowerShell) and press Enter. All the dependencies would be installed.
-4.	Go back to the Terminal (PowerShell) and be sure that you are pointing inside the project folder. To open the application, type ‘node app.js’ and press Enter.
-5.	The application should be live on the local port 3000.  
-6.	Type http://localhost:3000/ into a browser.
-7.	To login use the username: admin  and the password: admin
-8.	Now you should be inside the application
+JWT Authentication – Secure login and authorization.
 
-# How to use it :book:
-### Dashboard
+TypeORM – ORM for database management.
 
-Data about patients and rooms is available here. The page is split into three tables. 
+MySQL – Stores user, doctor, and appointment data.
 
-![Dashboard](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/dashboard.jpg)
+Frontend
 
-![Dashboard](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/dasboard_2.jpg)
+Next.js – React framework for SSR and static pages.
 
-To clear the red warning sign you need to go on the patient’s personal page. To do that, you have to double click on his name. By clicking on the ‘Update button’ on the bottom of the page, the patient’s diagnosis in updated for the next 24 hours (consequently, the red warning sign disappears).
+Tailwind CSS – Fast, responsive UI styling.
 
-### Add patient page
+Roles and Responsibilities
+Front Desk Staff
 
-You can add a new patient in the system with his personal details and his diseases. The application automatically computes the score of the patient based on the entered diseases
+Manage Doctor Profiles: Add, edit, or delete doctor details (specialization, gender, location, availability).
 
-![Add patient page](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/add_new_patient.jpg)
+Appointment Management: View, cancel, or reschedule patient appointments.
 
-### Patient page
+Search and Filter Doctors: Find doctors by specialization, location, and availability.
 
-Double click on a patient name on the dashboard to get here.
-![Patient page](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/patient_page.jpg)
+View All Appointments: Access appointment history for all patients and doctors.
 
-### System settings
+Key Features
+Authentication
+Secure login for front desk staff.
 
-The control center of the application. It allows users to manage the diseases & rooms of the Hospital and create new accounts
+Queue Management
+Add walk-in patients to the queue.
 
-![System Settings](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/system_settings.jpg)
+Assign queue numbers and update status (Waiting, With Doctor, Completed).
 
-# App Modules and Code organisation
-### Modules
+View and manage queue in real time.
 
-Module|Core	|Patients|Diseases|Rooms 
-------|-----|--------|--------|----
-Functionality	|- login system | - add / delete patients | - add / delete diseases | 	- assign rooms to patients
-.|- add users | - update patient's diagnosis | - assign disease to patients | - add / remove rooms
-.|- view dashboard	| - view patient’s page | 
-.|.| - retrieve patient's information	
+Appointment Management
+Book, cancel, or reschedule appointments.
 
-### Code organisation :open_file_folder:
+View doctor availability and time slots.
 
-Folder | Content | Responsability
-------|-----|--------
-/public	| |	Contains the public files, such as CSS, fonts and scripts.
-/routes	| |	Manage the HTTP requests. Is divided into smaller modules responsible for disjoint tasks.
-.	|/app.js| 	Renders dashboard page
-.	|/disease.js| 	Responsible for diseases
-.	|/login.js|	Responsible for logging in
-.	|/patients.js|	Responsible for patients
-.	|/rooms.js|	Responsible for rooms
-.	|/settings.js|	Renders settings page
-.	|/users.js|	Add new users and logout
-/server	| |	Defines the database and Schemas
-.	|/db/mongoose.js| 	Database settings
-.	|/models| 	Defines Schemas
-/views		| |Render pages
-.	|/layouts|	The core layout; each page is rendered inside the layout
-.	|/(other files)|	Contains specific visual changes for every page
+Appointment Status
+Track status: Booked, Completed, or Canceled.
 
-# Technologies
+Frontend Pages
+Front Desk Page
 
-### Backend
-![Nodejs - ExpressJS](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/backend.jpg)
+Main interface for managing patients and appointments.
 
-### Frontend
-![jQuery](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/frontend.jpg)
+Queue Management Page
 
-### Database
-![MongoDB - Mongoose](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/database.jpg)
+Displays patient list, queue numbers, and status updates.
 
-### Databse Schema
-![Database schema](https://github.com/margiki/NHS-nodejs-webapp/blob/master/github_readme_photos/database_design.jpg)
+Appointment Management View
 
-**The available application is connected to a MongoDB database online.** If you want to change the database to another one, you need to go: NHS app folder -> server -> db -> mongoose.js
+Shows available doctors and their time slots.
 
-Inside the file, you need to change the database link from
-mongoose.connect("mongodb://admin:admin123@ds145220.mlab.com:45220/nhs-app"); to mongoose.connect("your-database-link");
+Includes booking and management actions.
 
-# REST Apis
-The backend and frontend communicate through REST Apis. On the frontend, we make Ajax requests using jQuery to the following routes: 
+Bonus Features (Optional)
+Deployment: Host the application and provide a live demo link.
 
-URI |	Returns
-----|----
-/app/getdiseases |	returns information about all diseases in the system
-/app/getpatients |       	returns information about all patients in the system
-/app/getpatient/:hospitalNumber |	returns information about a specific patient
-/app/getrooms	| returns information about the rooms in the system
+Advanced Queue Features: Prioritize urgent patients.
 
-# Known bugs :bug:
-1. On some mobiles devices (iPhone, iPad) assigning rooms to patients is not working because mobile browsers doesn’t interpret the double-click. Also, the user can’t enter the patient's page because of the same reason. However, on LG mobile devices this feature works. 
-
-# License 
-Free to use, copy and distribute. :money_with_wings:
-
-
-
-
-
+Custom UI: Implement your own design for a unique experience.
 
